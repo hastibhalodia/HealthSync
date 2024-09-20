@@ -9,13 +9,15 @@
 			margin: 0;
 			padding: 0;
 			overflow-x: hidden;
-			background-image: url("https://www.microsoft.com/en-us/research/uploads/prod/2019/11/Medical-Health-and-Genomics-page-header_1920x720_1.31.2024.png");
+			background-image: url("https://img.freepik.com/premium-vector/medical-background-with-flat-icons-symbols_120542-1092.jpg?w=2000");
 			background-size: cover;
 			background-position: center;
+			background-attachment: fixed;
 		}
 
+		/* Top Navigation Bar */
 		.topnav {
-			background-color: rgba(200, 200, 200, 0.6);
+			background-color: rgba(100, 100, 100, 0.8);
 			position: fixed;
 			width: 100%;
 			top: 0;
@@ -24,6 +26,13 @@
 			z-index: 100;
 			display: flex;
 			justify-content: space-between;
+			transition: background-color 0.3s;
+			border-bottom-left-radius: 30px;
+			border-bottom-right-radius: 30px;
+		}
+
+		.topnav.scrolled {
+			background-color: #333;
 		}
 
 		.topnav .logo img {
@@ -38,19 +47,25 @@
 		}
 
 		.topnav a {
-			color: #333;
+			color: #ffffff;
 			text-align: center;
 			padding: 14px 20px;
 			text-decoration: none;
 			font-size: 18px;
 			border-radius: 30px;
+			transition: color 0.3s;
 		}
 
-		.topnav a:hover {
-			background-color: rgba(100, 100, 100, 0.8);
+		.topnav.scrolled a {
 			color: white;
 		}
 
+		.topnav a:hover {
+			background-color: #333;
+			color: white;
+		}
+
+		/* Hero Section */
 		.hero-section {
 			height: 80vh;
 			color: white;
@@ -62,12 +77,15 @@
 		}
 
 		.hero-section h1 {
+			margin-top: 1vh;
 			font-size: 4rem;
+			color: #333333;
 		}
 
 		.hero-section p {
 			font-size: 1.5rem;
-			margin-top: 20px;
+			margin-top: -50px;
+			color: #333333;
 		}
 
 		.hero-section .hero-buttons a {
@@ -77,22 +95,21 @@
 			border-radius: 30px;
 			text-decoration: none;
 			font-size: 18px;
+			transition: background-color 0.3s, border 0.3s;
 		}
 
-		.content {
-			padding: 60px 20px;
-			text-align: center;
+		/* Hero Button Hover Effect */
+		.hero-section .hero-buttons a:hover {
+			background-color: #333;
+			border: 2px solid #333; /* Adding a border on hover */
 		}
 
-		.content h2 {
-			font-size: 2.5rem;
-			margin-bottom: 20px;
-		}
-
+		/* Dashboard Section */
 		.dashboard {
 			padding: 50px;
-			background-color: white;
+			background-color: rgba(255, 255, 255, 0.7);
 			text-align: center;
+			margin-top: 55px;
 		}
 
 		.dashboard h3 {
@@ -112,6 +129,7 @@
 			margin: 20px;
 		}
 
+		/* Features Section */
 		.features {
 			margin-top: 50px;
 			display: flex;
@@ -144,45 +162,48 @@
 			display: block;
 			margin-top: 10px;
 			text-decoration: none;
-			background-color: #333;
+			background-color: rgb(100,100,100);
 			color: white;
 			padding: 10px;
 			border-radius: 5px;
 			font-size: 16px;
+			border-radius: 30px;
 		}
 
 		.feature-item a:hover {
-			background-color: #555;
+			background-color: #333;
 		}
 
+		/* Footer */
 		footer {
 			background-color: #333;
 			color: white;
-			padding: 20px;
+			padding: 10px;
 			text-align: center;
+			margin-top: 100px;
 		}
 	</style>
 </head>
 
 <body>
 <!-- Navbar -->
-<div class="topnav">
+<div class="topnav" id="navbar">
 	<div class="logo">
 		<a href="#"><img src="logo.png" alt="Meditech Logo"></a>
 	</div>
 	<div class="nav-links">
 		<a href="main.html" class="active">Home</a>
-		<a href="about.html">About Us</a>
+		<a href="aboutus.html">About Us</a>
 		<a href="contact.html">Contact</a>
-		<a href="login.html">Login/Signup</a>
+		<a href="add.html">Login/Signup</a>
 	</div>
 </div>
 
 <!-- Hero Section -->
 <div class="hero-section">
 	<div>
-		<h1>Welcome to Meditech</h1>
-		<p>Your Complete Hospital Management Solution</p>
+		<h1>Welcome to Meditech </h1>
+		<p>Your Complete Hospital Management Solution...</p>
 		<div class="hero-buttons">
 			<a href="add.html">Register</a>
 		</div>
@@ -191,8 +212,8 @@
 
 <!-- Dashboard Section -->
 <div class="dashboard">
-	<h2>Dashboard</h2>
-	<h3>Hospital Operations Overview</h3>
+	<h1>Dashboard</h1>
+	<h3>Hospital Operations Overview...</h3>
 	<div class="chart-container">
 		<!-- Real-time Queuing Data Visualization -->
 		<div class="chart">
@@ -242,6 +263,18 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+	// Scroll Function for Navbar Background and Text Color Change
+	window.onscroll = function () { scrollFunction() };
+
+	function scrollFunction() {
+		var navbar = document.getElementById("navbar");
+		if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+			navbar.classList.add("scrolled");
+		} else {
+			navbar.classList.remove("scrolled");
+		}
+	}
+
 	// Queue Chart
 	var ctxQueue = document.getElementById('queueChart').getContext('2d');
 	var queueChart = new Chart(ctxQueue, {
@@ -251,7 +284,7 @@
 			datasets: [{
 				label: 'Patients in Queue',
 				data: [12, 19, 3],
-				backgroundColor: 'rgba(75, 192, 192, 0.6)'
+				backgroundColor: ['#333']
 			}]
 		}
 	});
@@ -264,7 +297,7 @@
 			labels: ['Occupied Beds', 'Available Beds'],
 			datasets: [{
 				data: [120, 30],
-				backgroundColor: ['#FF6384', '#36A2EB']
+				backgroundColor: ['#333', '#fff']
 			}]
 		}
 	});
@@ -278,7 +311,9 @@
 			datasets: [{
 				label: 'Medicines Stock',
 				data: [500, 450, 420],
-				backgroundColor: 'rgba(153, 102, 255, 0.6)'
+				backgroundColor: ['#333'],
+				borderColor: ['#333'],
+				fill: false
 			}]
 		}
 	});
