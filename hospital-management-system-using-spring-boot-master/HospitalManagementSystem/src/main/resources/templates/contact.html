@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Contact Us - Meditech</title>
+  <style>
+    /* Use similar styling as your other pages */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      overflow-x: hidden;
+    }
+
+    /* Navbar styling */
+    .topnav {
+      background-color: rgba(200, 200, 200, 0.6);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .topnav.scrolled {
+      background-color: rgba(60, 60, 60, 0.9);
+    }
+
+    .topnav.scrolled a {
+      color: #f2f2f2;
+    }
+
+    .topnav .logo {
+      margin-left: 20px;
+    }
+
+    .topnav .logo img {
+      height: 40px;
+      width: auto;
+      transition: opacity 0.3s ease;
+    }
+
+    .topnav .nav-links {
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 20px;
+    }
+
+    .topnav a {
+      color: #333;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .topnav a:hover {
+      background-color: rgba(100, 100, 100, 0.8);
+      color: #fff;
+    }
+
+    .topnav a.active {
+      background-color: #333;
+      color: white;
+    }
+
+    /* Contact Us Container */
+    .contact-container {
+      padding: 60px 20px;
+      text-align: center;
+      background: url('Media/bg.jpg') no-repeat center center/cover;
+    }
+
+    .contact-container h2 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .contact-container p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .contact-form {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .contact-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: gray;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Hover effect for buttons */
+    .contact-form button:hover {
+      background-color: rgba(100, 100, 100, 0.8);
+      transform: scale(1.05);
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer styling */
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+      margin-top: 60px;
+    }
+
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="topnav" id="navbar">
+  <div class="logo">
+    <a href="index.html">
+      <img src="Media/logo.png" title="Meditech - Home">
+    </a>
+  </div>
+  <div class="nav-links">
+    <a href="main.html">Home</a>
+    <a href="opd.html">OPD</a>
+    <a href="beds.html">Beds</a>
+    <a href="admission.html">Admission</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+</div>
+
+<!-- Contact Us Container -->
+<div class="contact-container">
+  <h2>Contact Us</h2>
+  <p>We would love to hear from you! If you have any questions, comments, or feedback, please use the form below to reach out to us. Our team HealthSync is here to assist you.</p>
+
+  <div class="contact-form">
+    <form action="#" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="subject" placeholder="Subject" required>
+      <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2024 HealthSync. All Rights Reserved.</p>
+</footer>
+
+<script>
+  // Change the navbar color and text color when scrolling
+  window.onscroll = function () {
+    var navbar = document.getElementById("navbar");
+    if (window.pageYOffset > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  };
+</script>
+
+</body>
+</html>

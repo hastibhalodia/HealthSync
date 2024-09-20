@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Welcome to Meditech</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			margin: 0;
+			padding: 0;
+			overflow-x: hidden; /* Prevents horizontal scrolling */
+			background-image: url('bg.jpg'); /* Using bg.jpg from Media folder */
+			background-size: cover;
+			background-position: center;
+		}
+
+		/* Default (light gray) navigation bar styling */
+		.topnav {
+			background-color: rgba(200, 200, 200, 0.6);
+			position: fixed;
+			width: 100%;
+			top: 0;
+			left: 0;
+			padding: 10px 0;
+			transition: background-color 0.3s ease, color 0.3s ease;
+			z-index: 100;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		/* Logo on the left side */
+		.topnav .logo {
+			margin-left: 20px;
+		}
+
+		.topnav .logo img {
+			height: 40px;
+			width: auto;
+			transition: opacity 0.3s ease;
+		}
+
+		/* Hover effect for logo */
+		.topnav .logo img:hover {
+			opacity: 0.8;
+		}
+
+		/* Dark gray navbar when scrolled */
+		.topnav.scrolled {
+			background-color: rgba(60, 60, 60, 0.9);
+		}
+
+		/* Navbar links on the right side */
+		.topnav .nav-links {
+			display: flex;
+			justify-content: flex-end;
+			margin-right: 20px;
+		}
+
+		/* Curved navbar links */
+		.topnav a {
+			color: #333;
+			text-align: center;
+			padding: 14px 20px;
+			text-decoration: none;
+			font-size: 18px;
+			transition: background-color 0.3s ease, color 0.3s ease;
+			border-radius: 30px;
+		}
+
+		/* Change text color to light when navbar is dark */
+		.topnav.scrolled a {
+			color: #f2f2f2;
+		}
+
+		/* Hover effect on navbar links */
+		.topnav a:hover {
+			background-color: rgba(100, 100, 100, 0.8); /* Darker background */
+			color: #fff; /* White text on hover */
+			transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+		}
+
+		/* Active/current page link */
+		.topnav a.active {
+			background-color: #333;
+			color: white;
+		}
+
+		/* Hero section with Background Image */
+		.hero-section {
+			height: 80vh;
+			color: white;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			margin-top: 60px;
+			position: relative;
+		}
+
+		.hero-section h1 {
+			font-size: 4rem;
+			margin: 0;
+			text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+			transition: color 0.3s ease;
+		}
+
+		/* Hover effect for MediTech text */
+		.hero-section h1:hover {
+			color: rgba(200, 200, 200, 0.8);
+		}
+
+		.hero-section p {
+			font-size: 1.5rem;
+			margin: 20px 0 0;
+			text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+		}
+
+		/* Login and Sign Up buttons in hero section */
+		.hero-section .hero-buttons {
+			margin-top: 30px;
+		}
+
+		.hero-section .hero-buttons a {
+			background-color: gray;
+			color: white;
+			padding: 12px 20px;
+			border-radius: 30px;
+			text-decoration: none;
+			font-size: 18px;
+			margin: 0 10px;
+			transition: background-color 0.3s ease;
+		}
+
+		/* Hover effect for buttons */
+		.hero-section .hero-buttons a:hover {
+			background-color: rgba(100, 100, 100, 10); /* Darker background on hover */
+			color: #fff; /* Ensure text stays white */
+			transform: scale(1.05); /* Slightly enlarge the button */
+			box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+			transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+		}
+
+		/* Content section styling */
+		.content {
+			padding: 60px 20px;
+			text-align: center;
+		}
+
+		.content h2 {
+			font-size: 2.5rem;
+			color: #333;
+			margin-bottom: 20px;
+		}
+
+		.content p {
+			font-size: 1.2rem;
+			color: #555;
+			max-width: 800px;
+			margin: 0 auto;
+		}
+
+		/* Footer styling */
+		footer {
+			background-color: #333;
+			color: white;
+			padding: 20px;
+			text-align: center;
+			position: relative;
+			bottom: 0;
+			width: 100%;
+			box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+		}
+
+		footer p {
+			margin: 0;
+		}
+
+		/* Smooth hover effect for buttons */
+		.topnav a,
+		footer {
+			transition: all 0.3s ease;
+		}
+
+		/* Responsive adjustments */
+		@media (max-width: 768px) {
+			.hero-section h1 {
+				font-size: 3rem;
+			}
+
+			.hero-section p {
+				font-size: 1.2rem;
+			}
+
+			/* Stack nav links vertically on smaller screens */
+			.topnav .nav-links {
+				flex-direction: column;
+				margin-right: 0;
+			}
+
+			.topnav a {
+				padding: 10px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+<!-- Navbar -->
+<div class="topnav" id="navbar">
+	<!-- Logo on the left, redirects to home -->
+	<div class="logo">
+		<a href="#">
+			<img src="logo.png" alt="Meditech Logo" title="Meditech - Home"> <!-- Using logo.png from Media folder -->
+		</a>
+	</div>
+
+	<!-- Navigation links on the right -->
+	<div class="nav-links">
+		<a href="main.html" class="active">Home</a>
+		<a href="opd.html">OPD</a>
+		<a href="beds.html">Beds</a>
+		<a href="admission.html">Admission</a>
+		<a href="inventory.html">Inventory</a>
+		<a href="contact.html">Contact</a>
+	</div>
+</div>
+
+<!-- Hero Section with Background Image -->
+<div class="hero-section">
+	<div>
+		<h1>Welcome to Meditech</h1>
+		<p>Your Complete Hospital Management Solution</p>
+		<div class="hero-buttons">
+			<a href="add.html">Register</a>
+		</div>
+	</div>
+</div>
+
+<!-- Content Section -->
+<div class="content">
+	<h2>Why Choose Meditech?</h2>
+	<p>At Meditech, we provide seamless hospital services including OPD queuing, real-time bed availability tracking, patient admissions, and inventory management. With our cutting-edge technology, managing hospital operations has never been easier.</p>
+</div>
+
+<!-- Footer -->
+<footer>
+	<p>&copy; 2024 HealthSync. All Rights Reserved.</p>
+</footer>
+
+<script>
+	// Change the navbar color and text color when scrolling
+	window.onscroll = function () {
+		var navbar = document.getElementById("navbar");
+		if (window.pageYOffset > 50) {
+			navbar.classList.add("scrolled");
+		} else {
+			navbar.classList.remove("scrolled");
+		}
+	};
+</script>
+</body>
+
+</html>
